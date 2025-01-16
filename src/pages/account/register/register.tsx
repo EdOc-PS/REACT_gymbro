@@ -42,11 +42,7 @@ export default function Register() {
     const result = await Post("http://localhost:8080/gymbro/person", form);
 
     if (result.success) {
-      localStorage.setItem("userId", result.data.person.id);
-      localStorage.setItem("workoutRoutineId", result.data.person.workoutRoutine.id);
-      localStorage.setItem("token", result.data.access.token);
-
-      navigate("/home");
+      navigate("/login");
     } else {
       console.error("Erro ao registrar usuário:", result.message);
       console.log(form);
@@ -76,14 +72,14 @@ export default function Register() {
             <div className={style.same_place}>
               <InputField
                 label="name"
-                placeholder="Eduardo Octávio"
+                placeholder="Firstname Surname"
                 type="text"
                 iconClass="fi fi-rs-dumbbell-weightlifting"
                 onChange={handleChange}
               />
               <InputField
                 label="username"
-                placeholder="Nickname"
+                placeholder="Username"
                 type="text"
                 iconClass="fi fi-rs-user-ninja"
                 onChange={handleChange}
@@ -105,7 +101,7 @@ export default function Register() {
             />
             <InputField
               label="birthDate"
-              placeholder="22/01/2005"
+              placeholder="00/00/0000"
               type="data"
               iconClass="fi fi-rs-cake-birthday "
               onChange={handleChange}
@@ -113,14 +109,14 @@ export default function Register() {
             <div className={style.same_place}>
               <InputField
                 label="weight"
-                placeholder="83 Kg"
+                placeholder="Kg"
                 type="number"
                 iconClass="fi fi-rs-scale"
                 onChange={handleChange}
               />
               <InputField
                 label="height"
-                placeholder="184 Cm"
+                placeholder="Cm"
                 type="number"
                 iconClass="fi fi-rs-measuring-tape"
                 onChange={handleChange}
