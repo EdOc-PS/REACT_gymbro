@@ -1,22 +1,17 @@
 import style from "./popup_logout.module.sass";
 import Popup from "reactjs-popup";
-import { DELETE } from "../../../../core/services/delete";
+import { Post } from "../../../../core/services/post";
 
-interface PopUpDeleteProps {
-  exerciseId: string; 
-}
-
-export default function PopUpLogout({ exerciseId }: PopUpDeleteProps) {
+export default function PopUpLogout() {
   const handleDelete = async () => {
-    const response = await DELETE(
-      `http://localhost:8080/gymbro/exercise/${exerciseId}`,
-      localStorage.getItem("token")
+    const response = await Post(
+      `http://localhost:8080/gymbro/auth/logout`, {}
     );
 
     if (response.success) {
-      console.log("Exercício deletado com sucesso!");
+      console.log("Log out efetuado com sucesso!");
     } else {
-      console.log(`Erro ao deletar: ${response.message}`);
+      console.log(`Erro ao fazer log out: ${response.message}`);
     }
   };
 
